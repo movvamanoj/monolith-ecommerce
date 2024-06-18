@@ -8,7 +8,8 @@ const orderRoutes = require('./routes/orderRoutes');
 const app = express();
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/ecommerce', { useNewUrlParser: true, useUnifiedTopology: true });
+// Update MongoDB connection string to connect to the MongoDB service in Docker container
+mongoose.connect('mongodb://mongodb:27017/ecommerce', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
