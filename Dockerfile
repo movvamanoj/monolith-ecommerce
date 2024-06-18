@@ -13,9 +13,6 @@ RUN npm install
 # Copy all the source files
 COPY . .
 
-# Build the application (if applicable, e.g., for front-end projects)
-# RUN npm run build
-
 # Stage 2: Create a smaller image for running the application
 FROM node:16-alpine
 
@@ -24,6 +21,9 @@ WORKDIR /usr/src/app
 
 # Copy only the necessary files from the build stage
 COPY --from=builder /usr/src/app .
+
+# Install MongoDB
+RUN apk add --no-cache mongodb-tools mongodb
 
 # Expose the port the app runs on
 EXPOSE 3000

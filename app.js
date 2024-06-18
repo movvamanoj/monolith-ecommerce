@@ -9,7 +9,13 @@ const app = express();
 app.use(express.json());
 
 // Update MongoDB connection string to connect to the MongoDB service in Docker container
-mongoose.connect('mongodb://mongodb:27017/ecommerce', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://mongodb:27017/ecommerce', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
