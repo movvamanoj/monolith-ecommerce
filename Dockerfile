@@ -22,8 +22,8 @@ WORKDIR /usr/src/app
 # Copy only the necessary files from the build stage
 COPY --from=builder /usr/src/app .
 
-# Install MongoDB
-RUN apk add --no-cache mongodb-tools mongodb
+# Install MongoDB driver
+RUN npm install mongodb
 
 # Expose the port the app runs on
 EXPOSE 3000
